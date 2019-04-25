@@ -1,14 +1,63 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      alarme
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="alarmPrompt()" color="danger">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-card *ngIf="create" mode="ios" class="create-alarm">
+    <ion-card-header mode="ios">
+      <ion-card-subtitle mode="ios">
+        <ion-input [(ngModel)]="title" autofocus placeholder="Titulo alarma"></ion-input>
+      </ion-card-subtitle>
+      <ion-card-title mode="ios">
+        <ion-item>
+          <ion-label>Hora</ion-label>
+          <ion-datetime [(ngModel)]="time" display-format="HH:mm"></ion-datetime>
+        </ion-item>
+      </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-list>
+        <ion-radio-group [(ngModel)]="repetition">
+          <ion-item>
+            <ion-label>Solo una vez</ion-label>
+            <ion-radio slot="start" value="una vez" checked></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Entre semana</ion-label>
+            <ion-radio slot="start" value="entre semana"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Todos los dias</ion-label>
+            <ion-radio slot="start" value="siempre"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-button (click)="createAlarm()">Crear</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card mode="ios" *ngFor="let alarm of alarms">
+    <ion-toggle class="alarm-toggle" [(ngModel)]="alarm.on"></ion-toggle>
+    <ion-card-header mode="ios">
+      <ion-card-subtitle mode="ios">
+        {{alarm.title}}
+      </ion-card-subtitle>
+      <ion-card-title mode="ios">{{alarm.time}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{alarm.repetition}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
