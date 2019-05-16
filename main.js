@@ -28,7 +28,7 @@ function searchAlarms() {
     const ipToTry = `${ipObj[0]}.${ipObj[1]}.${ipObj[2]}.${i}`
     document.getElementById('scanning').innerHTML = `Escaneando...`
     const Http = new XMLHttpRequest();
-    const req = `http://${ipToTry}/ping`
+    const req = `http://${ipToTry}:8080/ping`
     Http.open("GET", req);
     Http.send();
     Http.onreadystatechange=(e)=>{
@@ -61,7 +61,7 @@ function postAlarm () {
   console.log(jsonAlarm)
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', `http://${alarmIp}/alarms`);
+  xhr.open('POST', `http://${alarmIp}:8080/alarms`);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.send(JSON.stringify(jsonAlarm))
   xhr.onload = function () {
