@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <script src='main.js'></script>
+</head>
+<body>
+  <div class="header">
+    <span class="title">alarme</span>
+    <button id="addAlarm" onclick="displayAddForm()">+</button>
+  </div>
+  <button onclick="searchAlarms()" id="search-btn">Buscar alarmas</button>
+  <div style="display: none;" id="spinner" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <p id="scanning"></p>
+  <div id="add-form" style="display: none">
+    <input id="timeInput" type="time">
+    <button onclick="postAlarm()">Agregar</button>
+  </div>
+  <ul id="alarms"></ul>
+
+  <div id="toast">Alarma agregada</div>
+</body>
+</html>
